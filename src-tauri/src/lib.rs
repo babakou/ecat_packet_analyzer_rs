@@ -12,8 +12,14 @@ fn greet_async(app: tauri::AppHandle, name: String) {
 }
 
 fn greet_async_sub(app: &tauri::AppHandle, name: String) {
+    let mut rest_time_sec = 3;
+    while rest_time_sec > 0 {
+        let countdown_str = format!("残り時間は{}秒です", rest_time_sec);
+        app.emit("greet", countdown_str).unwrap();
+        std::thread::sleep(std::time::Duration::from_secs(1));
+        rest_time_sec -= 1;
+    }
     let greet = format!("Hello, {}! You've been greeted from Rust!", name);
-    std::thread::sleep(std::time::Duration::from_secs(3));
     app.emit("greet", greet).unwrap();
 }
 
