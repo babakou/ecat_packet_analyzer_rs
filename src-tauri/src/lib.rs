@@ -1,4 +1,5 @@
 use tauri::{Emitter, Manager};
+mod ecat_datagram;
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 #[tauri::command]
@@ -24,8 +25,10 @@ fn greet_async_sub(app: &tauri::AppHandle, name: String) {
 }
 
 #[tauri::command]
-fn greet2(name: &str) -> String{
-    format!("Hello, {}! You've been greeted from Rust!", name)
+fn greet2(name: &str) -> Vec<ecat_datagram::DLInfo> {
+    let dlinfos = ecat_datagram::parse_byte_array(name);
+
+    dlinfos
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]

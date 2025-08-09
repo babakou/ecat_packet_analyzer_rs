@@ -17,11 +17,23 @@
         <button type="submit">Greet</button>
       </form>
       <form class="row" id="greet-form2">
-        <input id="greet-input2" placeholder="Enter a name..." autocomplete="off" />
-        <button type="submit">Greet</button>
+        <input id="bytes-input" placeholder="Enter a bytes..." autocomplete="off" />
+        <button type="submit">Analyze</button>
       </form>
       <p id="greet-msg"></p>
-      <p id="greet-msg2"></p>
+      <table id="analyze-result-table" border="1" style="border-collapse: collapse">
+        <thead>
+          <tr>
+            <th>Node No.</th>
+            <th>Command</th>
+            <th>PDI WDT</th>
+            <th>Port0</th>
+            <th>Port1</th>
+            <th>Port2</th>
+            <th>Port3</th>
+          </tr>
+        </thead>
+      </table>
     </main>
   </body>
 </html>
