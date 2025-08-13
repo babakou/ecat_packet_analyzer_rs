@@ -1,7 +1,7 @@
 import { invoke } from "@tauri-apps/api/core";
 
 let bytesInputEl : HTMLInputElement | null;
-let analyzeResultTableEl : HTMLTableElement | null;
+let analyzeResultTableEl : HTMLTableElement | null | undefined;
 
 export type DLInfo = {
   addr: number,
@@ -61,7 +61,8 @@ async function greet2() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  analyzeResultTableEl = document.querySelector("#analyze-result-table");
+  let analyzeResultIFrameEl: HTMLIFrameElement | null = document.querySelector("#analyze-result-iframe");
+  analyzeResultTableEl = analyzeResultIFrameEl?.contentDocument?.body.querySelector("#analyze-result-table");
   bytesInputEl = document.querySelector("#bytes-input");
 
   document.querySelector("#greet-form2")?.addEventListener("submit", (e) => {
