@@ -1,22 +1,7 @@
 import { invoke } from "@tauri-apps/api/core";
-import { listen } from "@tauri-apps/api/event";
 
-let greetInputEl: HTMLInputElement | null;
-let greetMsgEl: HTMLElement | null;
 let bytesInputEl : HTMLInputElement | null;
 let analyzeResultTableEl : HTMLTableElement | null;
-
-async function greet() {
-  if (greetMsgEl && greetInputEl) {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    // greetMsgEl.textContent = await invoke("greet", {
-    //   name: greetInputEl.value,
-    // });
-    await invoke("greet_async", {
-      name: greetInputEl.value,
-    });
-  }
-}
 
 export type DLInfo = {
   addr: number,
@@ -76,23 +61,11 @@ async function greet2() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
   analyzeResultTableEl = document.querySelector("#analyze-result-table");
   bytesInputEl = document.querySelector("#bytes-input");
-  document.querySelector("#greet-form")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
-  });
 
   document.querySelector("#greet-form2")?.addEventListener("submit", (e) => {
     e.preventDefault();
     greet2();
   });
 });
-
-listen<string>('greet', (greet) => {
-  if (greetMsgEl) {
-    greetMsgEl.textContent = greet.payload;
-  }
-})
