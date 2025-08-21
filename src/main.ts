@@ -69,4 +69,17 @@ window.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     greet2();
   });
+
+  document.querySelector("#clear-result")?.addEventListener("click", (e) => {
+    //e.preventDefault();
+    if (analyzeResultTableEl) {
+      let rows = analyzeResultTableEl.rows.length;
+      if (rows > 1) {
+        for (let i = 1; i < rows; i++) {
+          e.preventDefault();
+          analyzeResultTableEl.deleteRow(1);
+        }
+      }
+    }
+  })
 });
