@@ -37,26 +37,33 @@ async function greet2() {
         pdiwdtTdElement.textContent = dlinfo.pdiwdt;
       }
 
-      const port0TdElement = newTrElement?.insertCell();
-      if (port0TdElement) {
-        port0TdElement.textContent = dlinfo.port0_str;
-      }
+      let port0TdElement = newTrElement?.insertCell();
+      setPortStateCellElement(port0TdElement, dlinfo.port0_str);
       
-      const port1TdElement = newTrElement?.insertCell();
-      if (port1TdElement) {
-        port1TdElement.textContent = dlinfo.port1_str;
-      }
+      let port1TdElement = newTrElement?.insertCell();
+      setPortStateCellElement(port1TdElement, dlinfo.port1_str);
 
-      const port2TdElement = newTrElement?.insertCell();
-      if (port2TdElement) {
-        port2TdElement.textContent = dlinfo.port2_str;
-      }
+      let port2TdElement = newTrElement?.insertCell();
+      setPortStateCellElement(port2TdElement, dlinfo.port2_str);
 
-      const port3TdElement = newTrElement?.insertCell();
-      if (port3TdElement) {
-        port3TdElement.textContent = dlinfo.port3_str;
-      }
+      let port3TdElement = newTrElement?.insertCell();
+      setPortStateCellElement(port3TdElement, dlinfo.port3_str);
     })
+  }
+}
+
+function setPortStateCellElement(cellElement: HTMLTableCellElement | undefined, portState: string) : void {
+  if (cellElement) {
+    cellElement.textContent = portState;
+    if (portState === "loop closed, with link") {
+      cellElement.style.backgroundColor = 'yellow';
+    } else if (portState === "loop closed, no link") {
+      cellElement.style.backgroundColor = 'gray';
+    } else if (portState === "loop open, with link") {
+      cellElement.style.backgroundColor = 'white';
+    } else {
+      cellElement.style.backgroundColor = 'red';
+    }
   }
 }
 
